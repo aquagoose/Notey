@@ -17,7 +17,14 @@ namespace Notey
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Notey(args));
+            try
+            {
+                Application.Run(new Notey(args));
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString(), "Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
