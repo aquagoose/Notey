@@ -10,15 +10,15 @@ namespace Notey
 {
     public partial class Notey : Form
     {
-        private const string Version = "0.01"; // The current version number of the software.
+        private const string Version = "0.02"; // The current version number of the software.
         
-        private const string UpdatePath = "https://www.ollierobinson.co.uk/Notey/UpdateInfo.json";
-        private const string DownloadPath = "https://github.com/ohtrobinson/Notey";
+        private const string UpdatePath = "https://github.com/ohtrobinson/Notey/blob/master/OnlineData/UpdateInfo.json"; // The path where the version data will be downloaded
+        private const string DownloadPath = "https://github.com/ohtrobinson/Notey"; // The place where people will get directed to.
         
         private string _filePath = String.Empty; // The full path of the file (C:\Users\user\Documents\untitled.not)
         private string _fileName = String.Empty; // The name of the file (untitled.not)
 
-        private bool _fileEdited = false; // Has the file been edited?
+        private bool _fileEdited; // Has the file been edited?
 
         private string FileName
         {
@@ -51,20 +51,27 @@ namespace Notey
                     _filePath = saveFileDialog.FileName;
                     _fileEdited = false;
                     FileName = _filePath.Split(@"\").Last();
-                    textBox.SaveFile(saveFileDialog.FileName, saveFileDialog.FileName.EndsWith(".not") || saveFileDialog.FileName.EndsWith(".rtf") ? RichTextBoxStreamType.RichText : RichTextBoxStreamType.PlainText);
+                    textBox.SaveFile(saveFileDialog.FileName,
+                        saveFileDialog.FileName.EndsWith(".not") || saveFileDialog.FileName.EndsWith(".rtf")
+                            ? RichTextBoxStreamType.RichText
+                            : RichTextBoxStreamType.PlainText); // This works out what the data should be saved as
+                    // TODO: Warn users if text is formatted but they are saving as a .txt format file.
                 }
             }
-            else
+            else // If a file path is defined, run this
             {
                 _filePath = filePath;
                 _fileEdited = false;
                 FileName = _fileName;
-                textBox.SaveFile(filePath, filePath.EndsWith(".not") || filePath.EndsWith(".rtf") ? RichTextBoxStreamType.RichText : RichTextBoxStreamType.PlainText);
+                textBox.SaveFile(filePath,
+                    filePath.EndsWith(".not") || filePath.EndsWith(".rtf")
+                        ? RichTextBoxStreamType.RichText
+                        : RichTextBoxStreamType.PlainText);
             }
         }
 
-        private void Open(string filePath = null)
-        {
+        private void Open(string filePath = null) // This works similar to the saving.
+        { // TODO: Comment this stuff
             if (_fileEdited)
             {
                 DialogResult result = SaveChangesPrompt();
