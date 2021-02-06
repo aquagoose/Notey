@@ -12,7 +12,7 @@ namespace Notey
     {
         private const string Version = "0.02"; // The current version number of the software.
         
-        private const string UpdatePath = "https://github.com/ohtrobinson/Notey/blob/master/OnlineData/UpdateInfo.json"; // The path where the version data will be downloaded
+        private const string UpdatePath = "https://raw.githubusercontent.com/ohtrobinson/Notey/master/OnlineData/UpdateInfo.json"; // The path where the version data will be downloaded
         private const string DownloadPath = "https://github.com/ohtrobinson/Notey"; // The place where people will get directed to.
         
         private string _filePath = String.Empty; // The full path of the file (C:\Users\user\Documents\untitled.not)
