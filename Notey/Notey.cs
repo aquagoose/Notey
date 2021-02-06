@@ -10,7 +10,7 @@ namespace Notey
 {
     public partial class Notey : Form
     {
-        private const string Version = "0.00"; // The current version number of the software.
+        private const string Version = "0.01"; // The current version number of the software.
         
         private const string UpdatePath = "https://www.ollierobinson.co.uk/Notey/UpdateInfo.json";
         private const string DownloadPath = "https://github.com/ohtrobinson/Notey";
