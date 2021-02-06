@@ -10,11 +10,10 @@ namespace Notey
 {
     public partial class Notey : Form
     {
-        private const string Version = "0.02"; // The current version number of the software.
+        private const string Version = "0.03"; // The current version number of the software.
         
         private const string UpdatePath = "https://raw.githubusercontent.com/ohtrobinson/Notey/master/OnlineData/UpdateInfo.json"; // The path where the version data will be downloaded
-        private const string DownloadPath = "https://github.com/ohtrobinson/Notey"; // The place where people will get directed to.
-        
+
         private string _filePath = String.Empty; // The full path of the file (C:\Users\user\Documents\untitled.not)
         private string _fileName = String.Empty; // The name of the file (untitled.not)
 
@@ -126,7 +125,7 @@ namespace Notey
                     {
                         try
                         {
-                            Process.Start(new ProcessStartInfo("cmd", $"/c start {DownloadPath}")
+                            Process.Start(new ProcessStartInfo("cmd", $"/c start {(string)JObject.Parse(content)["releaseURL"]}")
                                 {CreateNoWindow = true});
                         }
                         catch (Exception e)
